@@ -111,14 +111,12 @@ name = "Configuration"
         [main.hotspot.captive_portal]
         ask = "Captive portal"
         type = "boolean"
-        bind = "array_settings()"
-        visible = "advanced__3"
+        visible = "advanced"
 	help = "Activate the captive portal mode"
 
         [main.hotspot.captive_portal_url]
         ask = "Local captive portal URL"
         type = "string"
-        bind = "array_settings()"
         visible = "advanced && captive_portal"
 	help = "Local URL on which redirect onto when the user mac address is not yet allowed"
 
