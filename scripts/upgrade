@@ -45,6 +45,15 @@ if [ -z ${service_name:-} ]; then
 	ynh_app_setting_set --app=$app --key=service_name --value=$service_name
 fi
 
+if [ -z ${captive_portal:-} ]; then
+	captive_portal=0
+	ynh_app_setting_set --app=$app --key=captive_portal --value=$captive_portal
+fi
+if [ -z ${captive_portal_url:-} ]; then
+	captive_portal_url=""
+	ynh_app_setting_set --app=$app --key=captive_portal_url --value=$captive_portal_url
+fi
+
 if [[ -n "${multissid:-}" ]] && [[ "${multissid}" -gt 1 ]]; then
 	wifi_ssid=$(cut -d'|' -f 1 <<< ${wifi_ssid})
 	wifi_secure=$(cut -d'|' -f 1 <<< ${wifi_secure})
