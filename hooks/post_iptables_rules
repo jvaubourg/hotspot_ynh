@@ -25,7 +25,7 @@ do
         subnet="${ip6_prefix}1/64"
     fi
 
-    mac_addresses=$(grep "${prefix}" /etc/hotspot/allowed.csv | cut -d, -f3)
+    mac_addresses=$(grep "${prefix}" /etc/hostapd/$app/allowed.csv | cut -d, -f3)
 
     # Allow to request 4253 port
     $iptables_cmd -w -A INPUT -i "${wifi_device}" -m udp -p udp --dport 4253 -j ACCEPT
