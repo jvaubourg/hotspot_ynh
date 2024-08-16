@@ -166,6 +166,8 @@ chown root: /etc/hostapd/$app/
 mkdir -pm 0755 /etc/dnsmasq.$app/
 chown root: /etc/dnsmasq.$app/
 
+touch /etc/hotspot/allowed.csv
+
 if [[ -n "${wifi_device:-}" ]]; then 
     configure_hostapd
     configure_dhcp
@@ -178,6 +180,11 @@ fi
 # Copy init script
 ynh_add_config --template="../conf/ynh-hotspot" --destination="/usr/local/bin/$service_name"
 chmod 0755 "/usr/local/bin/$service_name"
+
+ynh_add_config --template="../conf/captiveportal_fakedns" --destination="/usr/local/bin/captiveportal_fakedns"
+chmod 0755 "/usr/local/bin/captiveportal_fakedns"
+ynh_add_config --template="../conf/captiveportal_allow" --destination="/usr/local/bin/captiveportal_allow"
+chmod 0755 "/usr/local/bin/captiveportal_allow"
 
 # Copy openvpn scripts
 mkdir -pm 0755 /etc/openvpn/scripts
@@ -199,6 +206,9 @@ ynh_add_systemd_config --service=$service_name
 ynh_add_systemd_config --service="hostapd@$app" --template="../conf/systemd_hostapd.service"
 
 yunohost service add $service_name --description "Creates a Wi-Fi access point" --test_status "systemctl is-active hostapd@$app" --need_lock
+
+ynh_add_systemd_config --service="captiveportal_fakedns" --template="captiveportal_fakedns"
+yunohost service add captiveportal_fakedns --description "Captive portal dns service" --test_status "systemctl is-active captiveportal_fakedns"
 
 #=================================================
 # START SYSTEMD SERVICE
