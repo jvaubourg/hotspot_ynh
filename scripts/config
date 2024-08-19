@@ -199,6 +199,8 @@ ynh_app_config_apply() {
     
     # Activate captive portal or not
     captive_portal=$(ynh_app_setting_get --app=$app --key=captive_portal)
+    captive_portal_url=$(ynh_app_setting_get --app=$app --key=captive_portal_url)
+    domain=$(cut -d'/' -f 3 <<< "${captive_portal_url}")
     if [[ "${captive_portal}" -eq 1 ]]; then
         ynh_add_nginx_config
 	    ynh_systemd_action --service_name=captiveportal_fakedns --action="start" --log_path=systemd
