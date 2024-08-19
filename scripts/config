@@ -200,10 +200,10 @@ ynh_app_config_apply() {
     # Activate captive portal or not
     captive_portal=$(ynh_app_setting_get --app=$app --key=captive_portal)
     if [[ "${captive_portal}" -eq 1 ]]; then
-        ynh_config_add_nginx
+        ynh_add_nginx_config
 	    ynh_systemd_action --service_name=captiveportal_fakedns --action="start" --log_path=systemd
     else
-        ynh_config_remove_nginx
+        ynh_remove_nginx_config
 	    ynh_systemd_action --service_name=captiveportal_fakedns --action="stop" --log_path=systemd
     fi
 
