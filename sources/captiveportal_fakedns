@@ -3,19 +3,12 @@
 use strict;
 use warnings;
 use Net::DNS::Nameserver;
-use IO::Socket::INET;
 
-# This idea was stolen from Net::Address::IP::Local::connected_to()
 sub get_local_ip_address {
-    my $socket = IO::Socket::INET->new(
-        Proto       => 'udp',
-        PeerAddr    => '198.41.0.4', # a.root-servers.net
-        PeerPort    => '53', # DNS
-    );
-
-    # A side-effect of making a socket connection is that our IP address
-    # is available from the 'sockhost' method
-    my $local_ip_address = $socket->sockhost;
+    # Savagely obtain the local IP from this command (interfaces that are UP and starting with 'w')
+    # ... the previous method was not reliable, in theory there are several interfaces and we 
+    # specifically want the local IP for the wifi interface (and in theory there could be many of them..)
+    my $local_ip_address = `ip -br a | grep "^w" | awk '\$2 == "UP" { print \$3 }' | awk -F/ '{print \$1}'`;
 
     return $local_ip_address;
 }
