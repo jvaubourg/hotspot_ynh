@@ -5,7 +5,9 @@ No se debe editar a mano.
 
 # Wifi Hotspot para Yunohost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/hotspot.svg)](https://ci-apps.yunohost.org/ci/apps/hotspot/) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/hotspot.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/hotspot.maintain.svg)
+[![Nivel de integración](https://apps.yunohost.org/badge/integration/hotspot)](https://ci-apps.yunohost.org/ci/apps/hotspot/)
+![Estado funcional](https://apps.yunohost.org/badge/state/hotspot)
+![Estado En Mantención](https://apps.yunohost.org/badge/maintained/hotspot)
 
 [![Instalar Wifi Hotspot con Yunhost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=hotspot)
 
@@ -34,7 +36,7 @@ No se debe editar a mano.
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/hotspot_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/hotspot_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 

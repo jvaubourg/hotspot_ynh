@@ -5,7 +5,9 @@ Ini TIDAK boleh diedit dengan tangan.
 
 # Wifi Hotspot untuk YunoHost
 
-[![Tingkat integrasi](https://dash.yunohost.org/integration/hotspot.svg)](https://ci-apps.yunohost.org/ci/apps/hotspot/) ![Status kerja](https://ci-apps.yunohost.org/ci/badges/hotspot.status.svg) ![Status pemeliharaan](https://ci-apps.yunohost.org/ci/badges/hotspot.maintain.svg)
+[![Tingkat integrasi](https://apps.yunohost.org/badge/integration/hotspot)](https://ci-apps.yunohost.org/ci/apps/hotspot/)
+![Status kerja](https://apps.yunohost.org/badge/state/hotspot)
+![Status pemeliharaan](https://apps.yunohost.org/badge/maintained/hotspot)
 
 [![Pasang Wifi Hotspot dengan YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=hotspot)
 

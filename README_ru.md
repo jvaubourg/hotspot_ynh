@@ -5,7 +5,9 @@
 
 # Wifi Hotspot для YunoHost
 
-[![Уровень интеграции](https://dash.yunohost.org/integration/hotspot.svg)](https://ci-apps.yunohost.org/ci/apps/hotspot/) ![Состояние работы](https://ci-apps.yunohost.org/ci/badges/hotspot.status.svg) ![Состояние сопровождения](https://ci-apps.yunohost.org/ci/badges/hotspot.maintain.svg)
+[![Уровень интеграции](https://apps.yunohost.org/badge/integration/hotspot)](https://ci-apps.yunohost.org/ci/apps/hotspot/)
+![Состояние работы](https://apps.yunohost.org/badge/state/hotspot)
+![Состояние сопровождения](https://apps.yunohost.org/badge/maintained/hotspot)
 
 [![Установите Wifi Hotspot с YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=hotspot)
 

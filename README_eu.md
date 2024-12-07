@@ -5,7 +5,9 @@ EZ editatu eskuz.
 
 # Wifi Hotspot YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/hotspot.svg)](https://ci-apps.yunohost.org/ci/apps/hotspot/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/hotspot.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/hotspot.maintain.svg)
+[![Integrazio maila](https://apps.yunohost.org/badge/integration/hotspot)](https://ci-apps.yunohost.org/ci/apps/hotspot/)
+![Funtzionamendu egoera](https://apps.yunohost.org/badge/state/hotspot)
+![Mantentze egoera](https://apps.yunohost.org/badge/maintained/hotspot)
 
 [![Instalatu Wifi Hotspot YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=hotspot)
 
