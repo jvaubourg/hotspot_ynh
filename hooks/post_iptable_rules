@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source /usr/share/yunohost/helpers
+
 wifi_device=$(ynh_app_setting_get --app=$app --key=wifi_device)
 captive_portal=$(ynh_app_setting_get --app=$app --key=captive_portal)
 ip4_prefix=$(ynh_app_setting_get --app=$app --key=ip4_nat_prefix)
