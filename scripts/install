@@ -83,6 +83,8 @@ ynh_app_setting_set --app=$app --key=ip6_net --value="${ip6_net}"
 ynh_app_setting_set --app=$app --key=ip6_dns --value="${ip6_dns}"
 ynh_app_setting_set --app=$app --key=ip4_dns --value="${ip4_dns}"
 ynh_app_setting_set --app=$app --key=ip4_nat_prefix --value="${ip4_nat_prefix}"
+ynh_app_setting_set --app=$app --key=captive_portal --value=0
+ynh_app_setting_set --app=$app --key=captive_portal_url --value=""
 
 if [[ -z "$wifi_device" ]]; then
 	ynh_app_setting_set --app=$app --key=service_enabled --value=0
@@ -105,9 +107,16 @@ chown root: /etc/hostapd/$app/
 mkdir -pm 0755 /etc/dnsmasq.$app/
 chown root: /etc/dnsmasq.$app/
 
+touch /etc/hostapd/$app/allowed.csv
+
 # Copy init script
 ynh_add_config --template="../conf/ynh-hotspot" --destination="/usr/local/bin/$service_name"
 chmod 0755 "/usr/local/bin/$service_name"
+
+ynh_add_config --template="../sources/captiveportal_fakedns" --destination="/usr/local/bin/captiveportal_fakedns"
+chmod 0755 "/usr/local/bin/captiveportal_fakedns"
+ynh_add_config --template="../sources/captiveportal_allow" --destination="/usr/local/bin/captiveportal_allow"
+chmod 0755 "/usr/local/bin/captiveportal_allow"
 
 # Copy openvpn scripts
 mkdir -pm 0755 /etc/openvpn/scripts
@@ -140,10 +149,13 @@ ynh_script_progression --message="Configuring systemd service..."
 
 # Create a dedicated systemd config
 ynh_add_systemd_config --service=$service_name
+
 # Create custom systemd config for hostapd to handle multiple wifi devices
 ynh_add_systemd_config --service="hostapd@$app" --template="../conf/systemd_hostapd.service"
-
 yunohost service add $service_name --description "Creates a Wi-Fi access point" --test_status "systemctl is-active hostapd@$app" --need_lock
+
+ynh_add_systemd_config --service="captiveportal_fakedns" --template="../conf/captiveportal_fakedns.service"
+yunohost service add captiveportal_fakedns --description "Captive portal dns service" --test_status "systemctl is-active captiveportal_fakedns"
 
 #=================================================
 # START SYSTEMD SERVICE

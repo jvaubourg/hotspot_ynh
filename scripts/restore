@@ -43,6 +43,7 @@ ynh_script_progression --message="Restoring configurations ..."
 ynh_restore
 
 yunohost service add "$service_name" --description "Creates a Wi-Fi access point" --test_status "systemctl is-active hostapd@$app" --need_lock
+yunohost service add captiveportal_fakedns --description "Captive portal dns service" --test_status "systemctl is-active captiveportal_fakedns"
 
 #=================================================
 # START SYSTEMD SERVICE

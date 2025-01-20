@@ -5,7 +5,9 @@
 
 # YunoHost 上的 Wifi Hotspot
 
-[![集成程度](https://dash.yunohost.org/integration/hotspot.svg)](https://dash.yunohost.org/appci/app/hotspot) ![工作状态](https://ci-apps.yunohost.org/ci/badges/hotspot.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/hotspot.maintain.svg)
+[![集成程度](https://apps.yunohost.org/badge/integration/hotspot)](https://ci-apps.yunohost.org/ci/apps/hotspot/)
+![工作状态](https://apps.yunohost.org/badge/state/hotspot)
+![维护状态](https://apps.yunohost.org/badge/maintained/hotspot)
 
 [![使用 YunoHost 安装 Wifi Hotspot](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=hotspot)
 

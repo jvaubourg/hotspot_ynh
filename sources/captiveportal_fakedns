@@ -1,0 +1,44 @@
+#!/usr/bin/perl
+ 
+use strict;
+use warnings;
+use Net::DNS::Nameserver;
+
+sub get_local_ip_address {
+    # Savagely obtain the local IP from this command (interfaces that are UP and starting with 'w')
+    # ... the previous method was not reliable, in theory there are several interfaces and we 
+    # specifically want the local IP for the wifi interface (and in theory there could be many of them..)
+    my $local_ip_address = `ip -br a | grep "^w" | awk '\$2 == "UP" { print \$3 }' | awk -F/ '{print \$1}'`;
+
+    return $local_ip_address;
+}
+
+my $ip4_addr      = get_local_ip_address();
+ 
+sub reply_handler {
+  my ($qname, $qclass, $qtype, $peerhost,$query,$conn) = @_;
+  my ($rcode, @ans, @auth, @add);
+ 
+  if($qtype eq "A") {
+      my ($ttl, $rdata) = (1, $ip4_addr);
+      my $rr = new Net::DNS::RR("$qname $ttl $qclass $qtype $rdata");
+      push @ans, $rr;
+      $rcode = "NOERROR";
+
+  } else {
+      $rcode = "NXDOMAIN";
+  }
+ 
+  return ($rcode, \@ans, \@auth, \@add, { aa => 1 });
+}
+ 
+my $ns = new Net::DNS::Nameserver(
+  LocalPort    => 4253,
+  LocalAddr    => '0.0.0.0',
+  ReplyHandler => \&reply_handler,
+  Verbose      => 0
+  ) || die "Couldn't create fake nameserver object.\n";
+ 
+$ns->main_loop;
+
+exit 0;

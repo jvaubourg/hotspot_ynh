@@ -20,8 +20,13 @@ ynh_script_progression --message="Removing $app service"
 yunohost service stop $service_name
 yunohost service remove $service_name
 
+ynh_script_progression --message="Removing $app captiveportal_fakedns service"
+yunohost service stop captiveportal_fakedns
+yunohost service remove captiveportal_fakedns
+
 ynh_remove_systemd_config --service=$service_name
 ynh_remove_systemd_config --service="hostapd@$app"
+ynh_remove_systemd_config --service=captiveportal_fakedns
 
 #=================================================
 # REMOVE APP MAIN DIR
@@ -31,6 +36,9 @@ ynh_script_progression --message="Removing $app configurations..."
 ynh_secure_remove --file="/etc/openvpn/scripts/route-up.d/90-${service_name}"
 ynh_secure_remove --file="/etc/openvpn/scripts/route-down.d/90-${service_name}"
 ynh_secure_remove --file="/usr/local/bin/$service_name"
+ynh_secure_remove --file="/usr/local/bin/captiveportal_fakedns"
+ynh_secure_remove --file="/usr/local/bin/captiveportal_allow"
+ynh_secure_remove --file="/etc/hotspot"
 
 for FILE in $(ls /tmp/.${service_name}-* 2>/dev/null); do
     ynh_secure_remove --file="$FILE"
